@@ -3,9 +3,10 @@
 </script>
 
 <template>
+  <div><p>hello</p></div>
 
 </template>
 
-<style scoped lang="scss">
-
+<style lang="scss">
+@use './assets//reset.scss' as *;
 </style>
