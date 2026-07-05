@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'colors.scss' as *;
 @use 'fonts.scss' as *;
 *,
@@ -7,13 +8,20 @@
   padding: 0;
   box-sizing: border-box;
 }
-html{
-    font-family:  "Poppins", sans-serif;
+html {
+  font-family: 'Poppins', sans-serif;
 }
-h1,h2,h3,h4,h5,h6{
-    color: $gray-950;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $gray-950;
+  font-weight: map.get($font-weights, 'bold');
 }
-p{
-    color: $gray-900;
-    font-size: $primary-size;
+p {
+  color: $gray-900;
+  font-size: $primary-size;
+  font-weight: map.get($font-weights, 'light');
 }
