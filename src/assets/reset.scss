@@ -1,4 +1,5 @@
 @use 'colors.scss' as *;
+@use 'fonts.scss' as *;
 *,
 *::before,
 *::after {
@@ -6,9 +7,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+html{
+    font-family:  "Poppins", sans-serif;
+}
 h1,h2,h3,h4,h5,h6{
     color: $gray-950;
 }
 p{
     color: $gray-900;
+    font-size: $primary-size;
 }
