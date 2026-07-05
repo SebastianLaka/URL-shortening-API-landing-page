@@ -1,10 +1,10 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div><p>hello</p></div>
-
+  <div>
+    <h1>Header</h1>
+    <p>hello</p>
+    </div>
 </template>
 
 <style lang="scss">
