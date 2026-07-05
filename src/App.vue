@@ -4,6 +4,7 @@
   <div>
     <h1>Header</h1>
     <p>hello</p>
+    <button>hello</button>
     </div>
 </template>
 
