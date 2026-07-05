@@ -1,11 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Navigation from './components/Nav/NavMain.vue'
+</script>
 
 <template>
-  <div>
-    <h1>Header</h1>
-    <p>hello</p>
-    <button>hello</button>
-    </div>
+  <Navigation/>
 </template>
 
 <style lang="scss">
