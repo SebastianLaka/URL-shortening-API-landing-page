@@ -25,14 +25,14 @@ p {
   font-size: $primary-size;
   font-weight: map.get($font-weights, 'light');
 }
-button{
-    font-family: inherit;
-    font-size: $primary-size;
+button {
+  font-family: inherit;
+  font-size: $primary-size;
 }
-li{
-    list-style-type: none;
+li {
+  list-style-type: none;
 }
-img{
-    width: 100%;
-    display: block;
+img {
+  width: 100%;
+  display: block;
 }
