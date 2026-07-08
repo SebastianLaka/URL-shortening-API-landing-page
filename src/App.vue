@@ -7,5 +7,5 @@ import Navigation from './components/Nav/NavMain.vue'
 </template>
 
 <style lang="scss">
-@use './assets//reset.scss' as *;
+@use './assets/reset.scss' as *;
 </style>
