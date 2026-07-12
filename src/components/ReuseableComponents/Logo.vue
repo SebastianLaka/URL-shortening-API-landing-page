@@ -13,5 +13,6 @@ const props = defineProps<LogoProps>()
 .logo{
   width: 7.5625em;
   height: 2.0625em;
+  cursor: pointer;
 }
 </style>

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import Navigation from './components/Nav/NavMain.vue'
+import Layout from './components/Layout/Layout.vue';
 </script>
 
 <template>
-  <Navigation/>
+
+  <Layout />
 </template>
 
 <style lang="scss">
-@use './assets/reset.scss' as *;
+@use './assets/scss/reset.scss' as *;
 </style>

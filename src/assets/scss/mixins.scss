@@ -1,0 +1,65 @@
+@mixin button-styles($border: null, $border-radius: null, $background-color: null, $color: null, $padding: null, $font-weight: null, $font-size: null, ){
+    border: $border;
+    border-radius: $border-radius;
+    background-color: $background-color;
+    color: $color;
+    padding: $padding;
+    font-weight: $font-weight;
+    font-size: $font-size; 
+}
+@mixin flex-layout(
+  $flex-direction: null,
+  $justify-content: null,
+  $align-items: null,
+  $flex-wrap: null
+) {
+  display: flex;
+  @if $flex-direction {
+    flex-direction: $flex-direction;
+  }
+  @if $justify-content {
+    justify-content: $justify-content;
+  }
+  @if $align-items {
+    align-items: $align-items;
+  }
+  @if $flex-wrap {
+    flex-wrap: $flex-wrap;
+  }
+}
+@mixin set-gap($row-gap: null, $column-gap: null) {
+  row-gap: $row-gap;
+  column-gap: $column-gap;
+}
+@mixin grid-layout($columns: null) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+}
+@mixin grid-child($col-start, $col-end) {
+  grid-column: #{$col-start}/#{$col-end};
+}
+@mixin position-element(
+  $position: null,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null,
+  $z-index: null
+) {
+  position: $position;
+  @if $top {
+    top: $top;
+  }
+  @if $right {
+    right: $right;
+  }
+  @if $bottom{
+    bottom: $bottom;
+  }
+  @if $left{
+    left: $left;
+  }
+  @if $z-index {
+    z-index: $z-index;
+  }
+}

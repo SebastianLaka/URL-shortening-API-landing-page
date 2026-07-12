@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { RouterLink, RouterView } from 'vue-router'
+
 import LogoIcon from '../icons/logo.svg'
 import Logo from '../ReuseableComponents/Logo.vue'
 import NavIcon from './NavIcon.vue'
@@ -13,6 +15,25 @@ const toggleIcon = () => {
   isToggle.value = !isToggle.value
 }
 
+const isMobile = ref(true)
+console.log(isMobile)
+const changeNavDisplay = () => {
+  const width = window.innerWidth
+  if (width < 992) {
+    isMobile.value = true
+  } else {
+    isMobile.value = false
+    isToggle.value = true
+  }
+}
+
+onMounted(() => {
+  changeNavDisplay()
+  window.addEventListener('resize', changeNavDisplay)
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', changeNavDisplay)
+})
 const navItems = ref([
   { id: 1, name: 'Features' },
   { id: 2, name: 'Pricing' },
@@ -26,25 +47,53 @@ const navButtons = ref([
 
 <template>
   <nav class="navigation">
-    <Logo :src="logoData.src" :alt="logoData.alt" />
+    <div class="site-logo">
+      <router-link to="/">
+        <Logo :src="logoData.src" :alt="logoData.alt" />
+      </router-link>
+    </div>
+
     <button class="nav-menu-icon" @click="toggleIcon">
-      <NavIcon :isOpen="isToggle" />
+      <NavIcon :isOpen="isToggle" v-show="isMobile" />
     </button>
-    <NavMenu :isOpen="isToggle" :navItems="navItems" :navButtons="navButtons"/>
+    <NavMenu
+      :isOpen="isToggle"
+      :isMobile="isMobile"
+      :navItems="navItems"
+      :navButtons="navButtons"
+    />
   </nav>
 </template>
 <style lang="scss" scoped>
+@use '../../assets/scss/breakpoints.scss' as *;
+@use '../../assets/scss/mixins.scss' as *;
 .navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+  @include flex-layout($justify-content: space-between, $align-items: center);
+  @include position-element($position: relative);
   padding: 2em 1em;
   .nav-menu-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-layout($justify-content: center, $align-items: center);
     border: none;
+  }
+}
+@media (min-width: $desktop-small) {
+  .navigation {
+    @include grid-layout($columns: 12);
+    padding: 2em 1em;
+  }
+}
+@media (min-width: $desktop-wide) {
+  .navigation {
+    .site-logo {
+      @include grid-child(2,2);
+    }
+  }
+}
+@media (min-width: $desktop-ultra-wide) {
+  .navigation {
+    .site-logo {
+      @include grid-child(3,4);
+    }
   }
 }
 </style>
