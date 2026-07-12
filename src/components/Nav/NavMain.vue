@@ -84,6 +84,7 @@ const navButtons = ref([
 }
 @media (min-width: $desktop-wide) {
   .navigation {
+    padding: 2em 0;
     .site-logo {
       @include grid-child(2,2);
     }

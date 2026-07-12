@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface LogoProps {
   src: string
-  alt: string
+  alt?: string
 }
 const props = defineProps<LogoProps>()
 </script>
