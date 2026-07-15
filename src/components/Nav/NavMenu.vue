@@ -135,12 +135,13 @@ const props = defineProps<Navigation>()
     &__item {
       color: $gray-900;
       font-size: $basic-size;
-      padding: 0 .5em;
+      
       &--link {
         color: $gray-500;
         font-weight: map.get($font-weights, 'bold');
         text-decoration: none;
         transition: color 0.3s ease-in;
+        padding: 0 .5em;
         &:hover {
           color: $gray-900;
         }

@@ -62,12 +62,13 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
   .header-section {
     @include grid-layout($columns: 12);
     .header-image {
-      grid-column: 6/ -1;
+     @include grid-child(6, -1);
       grid-row: 1/1;
       transform: translateX(34%);
     }
     .header-content {
-      grid-column: 1/6;
+ 
+      @include grid-child(1, 6);
       text-align: left;
       @include flex-layout($justify-content: center, $align-items: flex-start);
       &__header {
@@ -85,22 +86,22 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
   .header-section {
     padding: 0;
     .header-image {
-      grid-column: 6/-1;
+      @include grid-child(6, -1);
       transform: translateX(20%);
     }
     .header-content {
-      grid-column: 2/6;
+      @include grid-child(2, 6);
     }
   }
 }
 @media (min-width: $desktop-ultra-wide) {
   .header-section {
     .header-image {
-      grid-column: 7/-1;
+      @include grid-child(7, -1);
       transform: translateX(0);
     }
     .header-content {
-      grid-column: 3/7;
+      @include grid-child(3, 7);
     }
   }
 }

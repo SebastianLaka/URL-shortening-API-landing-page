@@ -16,7 +16,6 @@ const toggleIcon = () => {
 }
 
 const isMobile = ref(true)
-console.log(isMobile)
 const changeNavDisplay = () => {
   const width = window.innerWidth
   if (width < 992) {
