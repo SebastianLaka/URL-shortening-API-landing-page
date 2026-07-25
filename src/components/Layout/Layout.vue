@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router'
 import Navigation from '@/components/Nav/NavMain.vue'
 import Shorten from '@/components/Shorten/ShortenMain.vue'
 import Statistics from '@/components/Statistics/StatisticsMain.vue'
+import StartedBanner from '@/components/StartedBanner/BannerMain.vue';
 </script>
 <template>
   <main class="main">
@@ -10,6 +11,7 @@ import Statistics from '@/components/Statistics/StatisticsMain.vue'
     <RouterView />
     <Shorten />
     <Statistics />
+    <StartedBanner />
   </main>
 </template>
 <style lang="scss" scoped>

@@ -62,12 +62,11 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
   .header-section {
     @include grid-layout($columns: 12);
     .header-image {
-     @include grid-child(6, -1);
+      @include grid-child(6, -1);
       grid-row: 1/1;
       transform: translateX(34%);
     }
     .header-content {
- 
       @include grid-child(1, 6);
       text-align: left;
       @include flex-layout($justify-content: center, $align-items: flex-start);
@@ -78,6 +77,9 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
       &__description {
         font-size: $basic-size;
         width: 40ch;
+      }
+      &__cta {
+        font-size: $basic-size;
       }
     }
   }

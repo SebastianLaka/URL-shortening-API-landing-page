@@ -205,6 +205,7 @@ const statisticsFeatures = ref([
   .statistics-main {
     padding: 0;
     .statistics-cards-box {
+      grid-template-rows: repeat(1, 1fr);
       .statistics-features {
         justify-content: start;
         align-items: start;

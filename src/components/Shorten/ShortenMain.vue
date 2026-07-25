@@ -35,7 +35,7 @@ const formData = reactive({
     <div class="shorten-main">
       <ShortenImage
         :src="bgImage"
-        alt="Image in shprten validation background "
+        alt="Image in shprten validation background"
         class="shorten-main__background"
       />
       <ShortenArea :id="formData.id" :placeholder="formData.placeholder" :url="formData.url" :name="formData.name" />
