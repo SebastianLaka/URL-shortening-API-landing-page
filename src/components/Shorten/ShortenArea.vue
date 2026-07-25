@@ -21,7 +21,8 @@ const isError = defineModel<boolean>('error', { default: false })
         :placeholder="placeholder"
         pattern="https://.*"
         class="form-parts__input"
-        :class="{ 'field-error': modelValue }"
+        :class="{ 'field-error': isError }"
+        
       />
       <p class="form-parts__error-message" :class="{ 'show-error-message': isError }">
         Please add a link

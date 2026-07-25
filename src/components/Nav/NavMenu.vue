@@ -66,7 +66,7 @@ const props = defineProps<Navigation>()
 @use '../../assets/scss/mixins.scss' as *;
 @use '../../assets/scss/breakpoints.scss' as *;
 .mobile-nav-menu {
-  @include position-element($position: absolute, $top: 5.75em, $right: 0.5em, $left: 0.5em);
+  @include position-element($position: absolute, $top: 5.75em, $right: 0.5em, $left: 0.5em, $z-index: 10);
   @include flex-layout(
     $justify-content: space-between,
     $align-items: center,
