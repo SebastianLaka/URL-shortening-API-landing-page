@@ -17,7 +17,7 @@ interface Navigation {
 const props = defineProps<Navigation>()
 </script>
 <template>
-  <Transition mode="in-out">
+  <Transition mode="in-out" name="slide-down">
     <div class="mobile-nav-menu" v-if="isOpen && isMobile">
       <ul class="items-container">
         <li v-for="navItem in navItems" :key="navItem.id" class="items-container__item">
@@ -114,14 +114,21 @@ const props = defineProps<Navigation>()
     background-color: $gray-400;
   }
 }
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.slide-down-enter-from,
+.slide-down-leave-to {
   opacity: 0;
+  transform: translateY(-30px);
+}
+
+.slide-down-enter-to,
+.slide-down-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .desktop-nav-menu {
