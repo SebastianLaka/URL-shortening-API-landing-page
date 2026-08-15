@@ -66,7 +66,7 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
 @media (min-width: $desktop-small) {
   .header-section {
     @include grid-layout($columns: 12);
-    padding: 0;
+    padding: 0 1em;
     .header-image {
       @include grid-child(6, -1);
       grid-row: 1/1;
@@ -92,6 +92,7 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
 }
 @media (min-width: $desktop-wide) {
   .header-section {
+    padding: 0;
     .header-image {
       @include grid-child(6, -1);
       transform: translateX(20%);
