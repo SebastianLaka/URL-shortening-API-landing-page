@@ -1,34 +1,18 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { reactive } from 'vue'
 import ShortenArea from './ShortenArea.vue'
+import ShortenLinkArea from './ShortenLinkArea.vue'
 import ShortenImage from '@/components/ReuseableComponents/Image.vue'
 import BgShortenMobie from '../../assets/images/bg-shorten-mobile.svg'
 import BgShortenDesktop from '../../assets/images/bg-shorten-desktop.svg'
-const bgImage = ref(BgShortenMobie)
-const changeBackgroundImage = () => {
-  const currentWidth = window.innerWidth
-  if (currentWidth < 992) {
-    bgImage.value = BgShortenMobie
-  } else {
-    bgImage.value = BgShortenDesktop
-  }
-}
-onMounted(() => {
-  changeBackgroundImage()
-  window.addEventListener('resize', changeBackgroundImage)
-})
-onUnmounted(() => {
-  window.removeEventListener('resize', changeBackgroundImage)
-})
-
+import { useResponsiveImage } from '@/composables/useResponsiveImage'
+const { currentImage: bgImage } = useResponsiveImage(BgShortenMobie, BgShortenDesktop)
 const formData = reactive({
   id: 'form-input',
   placeholder: 'Shorten a link here...',
   url: 'url',
   name: 'url',
-  
 })
-
 </script>
 <template>
   <section class="shorten-container">
@@ -38,8 +22,14 @@ const formData = reactive({
         alt="Image in shprten validation background"
         class="shorten-main__background"
       />
-      <ShortenArea :id="formData.id" :placeholder="formData.placeholder" :url="formData.url" :name="formData.name" />
+      <ShortenArea
+        :id="formData.id"
+        :placeholder="formData.placeholder"
+        :url="formData.url"
+        :name="formData.name"
+      />
     </div>
+    <ShortenLinkArea />
   </section>
 </template>
 <style lang="scss" scoped>
@@ -70,7 +60,6 @@ const formData = reactive({
       height: 80%;
       border-top-right-radius: 0.4em;
     }
-   
   }
 }
 
@@ -94,6 +83,7 @@ const formData = reactive({
 @media (min-width: $desktop-wide) {
   .shorten-container {
     padding: 0;
+  
     .shorten-main {
       padding: 3em;
       @include grid-child(2, 12);
@@ -102,6 +92,7 @@ const formData = reactive({
 }
 @media (min-width: $desktop-ultra-wide) {
   .shorten-container {
+ 
     .shorten-main {
       @include grid-child(3, 11);
     }

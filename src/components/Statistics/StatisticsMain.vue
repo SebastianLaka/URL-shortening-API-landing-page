@@ -6,7 +6,7 @@ import StatisticRecognition from '../icons/icon-brand-recognition.svg'
 import StatisticRecords from '../icons/icon-detailed-records.svg'
 import StatisticCustomizable from '../icons/icon-fully-customizable.svg'
 
-const statisticsFeatures = ref([
+const statisticsFeatures = [
   {
     id: 1,
     className: 'recognition',
@@ -34,12 +34,12 @@ const statisticsFeatures = ref([
     description:
       ' Improve brand awareness and content discoverability through customizable links, supercharging audience engagement.',
   },
-])
+]
 </script>
 <template>
   <section class="statistics-main">
     <div class="statistics-header">
-      <h1 class="statistics-header__header-title">Advanced Statiscits</h1>
+      <h1 class="statistics-header__header-title">Advanced Statistics</h1>
       <p class="statistics-header__content">
         Track how your links are performing across the web with our advanced statistics dashboard.
       </p>
@@ -161,16 +161,19 @@ const statisticsFeatures = ref([
         @include grid-child(7, 13);
         &::before {
           left: 35%;
-          top: 12.5%;
-          min-width: 10%;
+          top: 14%;
+          min-width: 3em;
           height: 0.5em;
         }
       }
       .statistic-feature-customizable {
         @include grid-child(5, 9);
         grid-row: 2/2;
-        &::before{
-          left: 49.25%;
+        &::before {
+          left: 49.2%;
+          top: -12%;
+          width: 0.5em;
+          height: 3em;
         }
       }
     }
@@ -191,9 +194,10 @@ const statisticsFeatures = ref([
       }
       .statistic-feature-records {
         @include grid-child(7, 13);
-         &::before{
+
+        &::before {
           left: 40%;
-         }
+        }
       }
       .statistic-feature-customizable {
         @include grid-child(5, 9);
@@ -206,18 +210,27 @@ const statisticsFeatures = ref([
     padding: 0;
     .statistics-cards-box {
       grid-template-rows: repeat(1, 1fr);
+      @include position-element($position: relative, $z-index: 1);
+      background-color: $white-0;
+      &::before {
+        content: '';
+        height: 0.6em;
+        min-width: 50em;
+        transform: translate(50%, 50%);
+        background-color: $blue-400;
+        @include position-element($position: absolute, $top: 54%, $left: 5%, $z-index: -1);
+      }
       .statistics-features {
         justify-content: start;
         align-items: start;
         text-align: left;
+        background-color: $white-0; 
+        width: 17.1875em;
         &::before {
-          left: -22%;
-          top: 48%;
-          min-width: 10%;
-          height: 0.5em;
+          display: none;
         }
         &__feature-content {
-          width: 30ch;
+          min-width: 25ch;
         }
         .statistic-features-icon-box {
           margin-bottom: 1em;
@@ -225,20 +238,23 @@ const statisticsFeatures = ref([
       }
       .statistic-feature-recognition {
         @include grid-child(3, 5);
+     
+        padding-right: 1em;
       }
       .statistic-feature-records {
-        @include grid-child(6, 9);
+        @include grid-child(6, 8);
         margin-top: 2.75em;
         justify-self: center;
+      
+        padding: 0 1em;
       }
       .statistic-feature-customizable {
-        @include grid-child(9, 12);
+        @include grid-child(9, 11);
         grid-row: 1/1;
         margin-top: 5.5em;
         justify-self: end;
-        &::before {
-          top: 40%;
-        }
+      
+        padding-left: 1em;
       }
     }
   }

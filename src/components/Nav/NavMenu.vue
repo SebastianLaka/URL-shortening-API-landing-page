@@ -18,7 +18,7 @@ const props = defineProps<Navigation>()
 </script>
 <template>
   <Transition mode="in-out">
-    <div class="mobile-nav-menu" v-if="!isOpen && isMobile">
+    <div class="mobile-nav-menu" v-if="isOpen && isMobile">
       <ul class="items-container">
         <li v-for="navItem in navItems" :key="navItem.id" class="items-container__item">
           <router-link to="/notfound" class="items-container__item--link">
@@ -66,7 +66,8 @@ const props = defineProps<Navigation>()
 @use '../../assets/scss/mixins.scss' as *;
 @use '../../assets/scss/breakpoints.scss' as *;
 .mobile-nav-menu {
-  @include position-element($position: absolute, $top: 5.75em, $right: 0.5em, $left: 0.5em, $z-index: 10);
+  @include position-element($position: absolute, $top: 5.75em, $right: 0.5em, $left: 0.5em, $z-index: 1);
+  height: 50svh;
   @include flex-layout(
     $justify-content: space-between,
     $align-items: center,

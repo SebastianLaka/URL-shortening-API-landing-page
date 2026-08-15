@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-
+import { RouterLink } from 'vue-router'
 import LogoIcon from '../icons/logo.svg'
 import Logo from '../ReuseableComponents/Logo.vue'
 import NavIcon from './NavIcon.vue'
 import NavMenu from './NavMenu.vue'
+
+defineProps<{
+  isScrolled?: boolean
+}>()
+
 const logoData = {
   src: LogoIcon,
   alt: 'Shortly logo icon in nav',
 }
-const isToggle = ref(true)
+const isMenuOpen = ref(false)
 const toggleIcon = () => {
-  isToggle.value = !isToggle.value
+  isMenuOpen.value = !isMenuOpen.value
 }
 
 const isMobile = ref(true)
@@ -20,9 +24,10 @@ const changeNavDisplay = () => {
   const width = window.innerWidth
   if (width < 992) {
     isMobile.value = true
+    isMenuOpen.value = true
   } else {
     isMobile.value = false
-    isToggle.value = true
+    isMenuOpen.value = false
   }
 }
 
@@ -45,7 +50,7 @@ const navButtons = ref([
 </script>
 
 <template>
-  <nav class="navigation">
+  <nav class="navigation" :class="{ 'navigation--scrolled': isScrolled }">
     <div class="site-logo">
       <router-link to="/">
         <Logo :src="logoData.src" :alt="logoData.alt" />
@@ -53,10 +58,10 @@ const navButtons = ref([
     </div>
 
     <button class="nav-menu-icon" @click="toggleIcon">
-      <NavIcon :isOpen="isToggle" v-show="isMobile" />
+      <NavIcon :isOpen="isMenuOpen" v-show="isMobile" />
     </button>
     <NavMenu
-      :isOpen="isToggle"
+      :isOpen="!isMenuOpen"
       :isMobile="isMobile"
       :navItems="navItems"
       :navButtons="navButtons"
@@ -66,13 +71,20 @@ const navButtons = ref([
 <style lang="scss" scoped>
 @use '../../assets/scss/breakpoints.scss' as *;
 @use '../../assets/scss/mixins.scss' as *;
+@use '../../assets//scss/colors.scss' as *;
 .navigation {
   @include flex-layout($justify-content: space-between, $align-items: center);
-  @include position-element($position: relative);
+  @include position-element($position: fixed, $z-index: 100);
+  width: 100%;
   padding: 2em 1em;
   .nav-menu-icon {
     @include flex-layout($justify-content: center, $align-items: center);
     border: none;
+    background-color: transparent;
+  }
+  &--scrolled {
+    background-color: $white-0;
+    transition: background-color 0.3s ease-in-out;
   }
 }
 @media (min-width: $desktop-small) {
@@ -85,14 +97,14 @@ const navButtons = ref([
   .navigation {
     padding: 2em 0;
     .site-logo {
-      @include grid-child(2,2);
+      @include grid-child(2, 2);
     }
   }
 }
 @media (min-width: $desktop-ultra-wide) {
   .navigation {
     .site-logo {
-      @include grid-child(3,4);
+      @include grid-child(3, 4);
     }
   }
 }

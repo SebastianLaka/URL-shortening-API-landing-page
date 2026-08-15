@@ -28,7 +28,8 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
 .header-section {
   @include flex-layout($flex-direction: column);
   @include set-gap(1em, 0);
-  padding: 0 1em;
+
+  padding: 2em 1em 0 1em;
   overflow-x: hidden;
   .header-image {
     transform: translateX(15%);
@@ -54,6 +55,10 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
       );
       font-size: $primary-size;
       margin-top: 0.75em;
+      transition: background-color .3s ease-in-out;
+      &:hover {
+        background-color: $blue-hover;
+      }
     }
   }
 }
@@ -61,6 +66,7 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
 @media (min-width: $desktop-small) {
   .header-section {
     @include grid-layout($columns: 12);
+    padding: 0;
     .header-image {
       @include grid-child(6, -1);
       grid-row: 1/1;
@@ -86,7 +92,6 @@ import HeaderButton from '../ReuseableComponents/Button.vue'
 }
 @media (min-width: $desktop-wide) {
   .header-section {
-    padding: 0;
     .header-image {
       @include grid-child(6, -1);
       transform: translateX(20%);

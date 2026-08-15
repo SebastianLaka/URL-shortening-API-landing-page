@@ -1,25 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import BoostBannerMobile from '@/assets/images/bg-boost-mobile.svg'
 import BoostBannerDesktop from '@/assets/images/bg-boost-desktop.svg'
 import BannerCta from '@/components/ReuseableComponents/Button.vue'
 import BannerImage from '@/components/ReuseableComponents/Image.vue'
-const boostBgImg = ref(BoostBannerMobile)
-const changeBackgroundImage = () => {
-  const currentWidth = window.innerWidth
-  if (currentWidth < 992) {
-    boostBgImg.value = BoostBannerMobile
-  } else {
-    boostBgImg.value = BoostBannerDesktop
-  }
-}
-onMounted(() => {
-  changeBackgroundImage()
-  window.addEventListener('resize', changeBackgroundImage)
-})
-onUnmounted(() => {
-  window.removeEventListener('resize', changeBackgroundImage)
-})
+import { useResponsiveImage } from '@/composables/useResponsiveImage'
+const { currentImage: boostBgImg } = useResponsiveImage(BoostBannerMobile, BoostBannerDesktop)
 </script>
 
 <template>
@@ -43,6 +28,7 @@ onUnmounted(() => {
   background-color: $purple-950;
   padding: 5em;
   overflow: hidden;
+
   &__background {
     @include position-element(
       $position: absolute,
@@ -70,8 +56,12 @@ onUnmounted(() => {
       $font-weight: map.get($font-weights, 'bold'),
       $border-radius: 1.4em
     );
+    transition: background-color 0.3s ease-in-out;
     font-size: $primary-size;
     margin-top: 0.75em;
+    &:hover {
+      background-color: $blue-hover;
+    }
   }
 }
 @media (min-width: $desktop-small) {

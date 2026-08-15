@@ -1,34 +1,33 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ShortenButton from '@/components/ReuseableComponents/Button.vue'
-interface inputProps {
-  id: string
-  placeholder: string
-  url: string
-  name: string
+import { useURLStore } from '@/stores/urlGenerator.ts'
+
+const urlStore = useURLStore()
+const inputUrl = ref('')
+
+const handleShorten = () => {
+  urlStore.shortenUrl(inputUrl.value)
+  if (!urlStore.errorMessage) {
+    inputUrl.value = ''
+  }
 }
-const props = defineProps<inputProps>()
-const modelValue = defineModel<string>({ default: '' })
-const isError = defineModel<boolean>('error', { default: false })
 </script>
 <template>
-  <form class="shorten-form" @submit.prevent>
+  <form class="shorten-form" @submit.prevent="handleShorten">
     <div class="form-parts">
       <input
-        v-model="modelValue"
-        :type="url"
-        :name="url"
-        :id="name"
-        :placeholder="placeholder"
-        pattern="https://.*"
+        v-model="inputUrl"
+        type="text"
+        placeholder="Shorten a link here..."
         class="form-parts__input"
-        :class="{ 'field-error': isError }"
-        
+        :class="{ 'field-error': urlStore.errorMessage }"
       />
-      <p class="form-parts__error-message" :class="{ 'show-error-message': isError }">
-        Please add a link
+      <p class="form-parts__error-message" :class="{ 'show-error-message': urlStore.errorMessage }">
+        {{ urlStore.errorMessage }}
       </p>
     </div>
-    <ShortenButton class="shorten-form__cta" type="submit">Shorten It!</ShortenButton>
+    <ShortenButton class="shorten-form__cta" type="submit" :disabled="urlStore.load">{{ urlStore.load ? 'Shortening...' : 'Shorten It!' }}</ShortenButton>
   </form>
 </template>
 <style lang="scss" scoped>
@@ -59,6 +58,7 @@ const isError = defineModel<boolean>('error', { default: false })
         color: $red-400;
         font-style: italic;
         font-size: 0.875rem;
+        padding-top: .5em;
       }
     }
   }
@@ -72,6 +72,10 @@ const isError = defineModel<boolean>('error', { default: false })
       $font-weight: map.get($font-weights, 'bold'),
       $border-radius: 0.4em
     );
+    transition: background-color .3s ease-in-out;
+    &:hover{
+      background-color: $blue-hover;
+    }
   }
 }
 @media (min-width: $desktop-small) {
