@@ -21,7 +21,7 @@ const props = defineProps<Navigation>()
     <div class="mobile-nav-menu" v-if="isOpen && isMobile">
       <ul class="items-container">
         <li v-for="navItem in navItems" :key="navItem.id" class="items-container__item">
-          <router-link to="/notfound" class="items-container__item--link">
+          <router-link to="/NotFound" class="items-container__item--link">
             {{ navItem.name }}
           </router-link>
         </li>

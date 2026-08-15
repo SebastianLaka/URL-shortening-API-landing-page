@@ -51,7 +51,6 @@ export const useURLStore = defineStore('url', () => {
     localStorage.setItem('links', JSON.stringify(links.value))
 
     load.value = false
-    console.log(newLink)
   }
 
   return { links, load, errorMessage, hasLinks, shortenUrl }
